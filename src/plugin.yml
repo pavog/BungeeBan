@@ -1,0 +1,7 @@
+name: BungeeBan
+version: 2.6
+author: VinciDev
+description: A fully customizable and easy to use BungeeCord plugin managing Bans and Mutes, and much more!
+website: http://gitlab.vincidev.de/vincidev/BungeeBan
+main: de.vincidev.bungeeban.BungeeBan
+commands:
