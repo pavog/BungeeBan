@@ -39,7 +39,7 @@ public class SQLite {
         }
     }
 
-    public void update(String query) {
+    public void update(final String query) {
         if(isConnected()) {
             new Thread(new Runnable() {
                 @Override
@@ -76,6 +76,13 @@ public class SQLite {
     public void createTableIfNotExists(String tablename, String options) {
         update("CREATE TABLE IF NOT EXISTS " + tablename + "(" + options + ")");
     }
+
+    public void truncateTable(String tablename) {
+        update("TRUNCATE " + tablename);
+    }
+
+    public void
+
     public Connection getConn() {
         return conn;
     }
