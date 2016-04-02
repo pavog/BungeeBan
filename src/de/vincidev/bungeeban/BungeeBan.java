@@ -1,12 +1,18 @@
 package de.vincidev.bungeeban;
 
+import de.vincidev.bungeeban.handlers.BanHandler;
+import de.vincidev.bungeeban.handlers.MuteHandler;
+import de.vincidev.bungeeban.handlers.UnbanHandler;
+import de.vincidev.bungeeban.handlers.UnmuteHandler;
 import de.vincidev.bungeeban.util.ConfigManager;
 import de.vincidev.bungeeban.util.SQL;
+import net.md_5.bungee.BungeeCord;
 import net.md_5.bungee.api.plugin.Plugin;
+import net.md_5.bungee.api.plugin.PluginManager;
 
 public class BungeeBan extends Plugin {
 
-    public static String PREFIX = "", CONSOLE_PREFIX = "";
+    public static String PREFIX = "", CONSOLE_PREFIX = "[BungeeBan] ";
 
     private static BungeeBan instance;
     private static SQL sql;
@@ -17,16 +23,35 @@ public class BungeeBan extends Plugin {
         instance = this;
         configManager = new ConfigManager();
         configManager.init();
+        log("Config and files initialized. Now attempting to connect to SQL.");
         sql.openConnection();
-        sql.createTableIfNotExists("BungeeBan_Bans", "UUID VARCHAR(100), BanEnd LONG, BanReason VARCHAR(256), BannedBy VARCHAR(100)");
-        sql.createTableIfNotExists("BungeeBan_IPBans", "IP VARCHAR(100), BanEnd LONG, BanReason VARCHAR(256), BannedBy VARCHAR(100)");
-        sql.createTableIfNotExists("BungeeBan_Mutes", "UUID VARCHAR(100), MuteEnd LONG, MuteReason VARCHAR(256), MutedBy VARCHAR(100)");
-        sql.createTableIfNotExists("BungeeBan_IPMutes", "IP VARCHAR(100), MuteEnd LONG, MuteReason VARCHAR(256), MutedBy VARCHAR(100)");
+        if(sql.isConnected()) {
+            log("SQL successfully connected. Now creating tables.");
+            sql.createTableIfNotExists("BungeeBan_Bans", "UUID VARCHAR(100), BanEnd LONG, BanReason VARCHAR(256), BannedBy VARCHAR(100)");
+            sql.createTableIfNotExists("BungeeBan_Mutes", "UUID VARCHAR(100), MuteEnd LONG, MuteReason VARCHAR(256), MutedBy VARCHAR(100)");
+            register();
+            log("Tables successfully created.");
+            log("Loading complete!");
+        } else {
+            log("An internal error occured whilst connecting to SQL.");
+        }
     }
 
     @Override
     public void onDisable() {
         sql.closeConnection();
+    }
+
+    public void register() {
+        PluginManager pm = BungeeCord.getInstance().getPluginManager();
+        pm.registerListener(this, new BanHandler());
+        pm.registerListener(this, new UnbanHandler());
+        pm.registerListener(this, new MuteHandler());
+        pm.registerListener(this, new UnmuteHandler());
+    }
+
+    public void log(String str) {
+        System.out.println(CONSOLE_PREFIX + str);
     }
 
     public static BungeeBan getInstance() {

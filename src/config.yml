@@ -54,7 +54,24 @@ lang:
     internal_error: '&cAn internal error occured: &e{DETAILS}'
     player_already_banned: '&cThe player &e{NAME} is already banned.'
     player_not_banned: '&cThe player &e{NAME} is not banned.'
-    
+
+  banmessage:
+  - '&cYou have been banned from the server!'
+  - '&cReason: &e{REASON}'
+  - '&cBanned By: &e{BY}'
+  - '&cRemaining time: &e{REMAININGTIME}'
+
+  mutemessage:
+  - '&cYou are currently muted.'
+  - '&cReason: &e{REASON}'
+  - '&cBanned By: &e{BY}'
+  - '&cRemaining time: &e{REMAININGTIME}'
+
+  kickedmessage:
+  - '&cYou have been kicked from the server!'
+  - '&cReason: &e{REASON}'
+  - '&cKicked By: &e{BY}'
+
   commands:
     ban:
       syntax: '&3Usage: &e/ban <Player> <Reason>'

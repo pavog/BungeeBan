@@ -79,7 +79,6 @@ public class SQL {
         }
     }
 
-    @Deprecated
     public ResultSet getResult(String query) {
         if(isConnected()) {
             try {
