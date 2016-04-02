@@ -120,3 +120,22 @@ lang:
       broadcast:
       - '&e{NAME} &chas been kicked by &e{BY}&c.'
       - '&cReason: &e{REASON}'
+    check:
+      syntax: '&3Usage: &e/check <Player>'
+      banned:
+        yes:
+        - '&3The player &e{NAME} &2is banned&3.'
+        - '&3Reason: &e{REASON}'
+        - '&3By: &e{BY}'
+        - '&3Remaining time: &e{REMAININGTIME}'
+        no:
+        - '&3The player &e{NAME} is &4not &4banned.'
+      muted:
+        yes:
+        - '&3The player &e{NAME} &2is muted&3.'
+        - '&3Reason: &e{REASON}'
+        - '&3By: &e{BY}'
+        - '&3Remaining time: &e{REMAININGTIME}'
+        no:
+        - '&3The player &e{NAME} is &4not &4muted.'
+      uuid: '&3UUID: &e{UUID}'
