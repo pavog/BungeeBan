@@ -54,6 +54,7 @@ lang:
     internal_error: '&cAn internal error occured: &e{DETAILS}'
     player_already_banned: '&cThe player &e{NAME} &cis already banned.'
     player_not_banned: '&cThe player &e{NAME} &cis not banned.'
+    unknown_timeunit: '&cUnknown timunit. <sec|min|h|days>'
 
   banmessage:
   - '&cYou have been banned from the server!'
@@ -79,14 +80,14 @@ lang:
       broadcast:
       - '&e{NAME} &chas been banned by &e{BY}&c.'
       - '&cReason: &e{REASON}'
-      - '&cTime: &e{REMAININGTIME]'
+      - '&cTime: &e{REMAININGTIME}'
     tempban:
       syntax: '&3Usage: &e/tempban <Player> <Time> <TimeUnit> <Reason>'
       banned: '&aYou have successfully banned &e{NAME}&a.'
       broadcast:
       - '&e{NAME} &chas been banned by &e{BY}&c.'
       - '&cReason: &e{REASON}'
-      - '&cTime: &e{REMAININGTIME]'
+      - '&cTime: &e{REMAININGTIME}'
     unban:
       syntax: '&3Usage: &e/unban <Player>'
       unbanned: '&aYou have successfully unbanned &e{NAME}&a.'
@@ -98,14 +99,14 @@ lang:
       broadcast:
       - '&e{NAME} &chas been muted by &e{BY}&c.'
       - '&cReason: &e{REASON}'
-      - '&cTime: &e{REMAININGTIME]'
+      - '&cTime: &e{REMAININGTIME}'
     tempmute:
       syntax: '&3Usage: &e/tempmute <Player> <Time> <TimeUnit> <Reason>'
       muted: '&aYou have successfully muted &e{NAME}&a.'
       broadcast:
       - '&e{NAME} &chas been muted by &e{BY}&c.'
       - '&cReason: &e{REASON}'
-      - '&cTime: &e{REMAININGTIME]'
+      - '&cTime: &e{REMAININGTIME}'
     unmute:
       syntax: '&3Usage: &e/unmute <Player>'
       unmuted: '&aYou have successfully unmuted &e{NAME}&a.'
