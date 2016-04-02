@@ -123,19 +123,19 @@ lang:
     check:
       syntax: '&3Usage: &e/check <Player>'
       banned:
-        yes:
-        - '&3The player &e{NAME} &2is banned&3.'
+        positive:
+        - '&3The player &e{NAME} &4is banned&3.'
         - '&3Reason: &e{REASON}'
         - '&3By: &e{BY}'
         - '&3Remaining time: &e{REMAININGTIME}'
-        no:
-        - '&3The player &e{NAME} is &4not &4banned.'
+        negative:
+        - '&3The player &e{NAME} is &2not banned&3.'
       muted:
-        yes:
-        - '&3The player &e{NAME} &2is muted&3.'
+        positive:
+        - '&3The player &e{NAME} &4is muted&3.'
         - '&3Reason: &e{REASON}'
         - '&3By: &e{BY}'
         - '&3Remaining time: &e{REMAININGTIME}'
-        no:
-        - '&3The player &e{NAME} is &4not &4muted.'
+        negative:
+        - '&3The player &e{NAME} is &2not muted&3.'
       uuid: '&3UUID: &e{UUID}'

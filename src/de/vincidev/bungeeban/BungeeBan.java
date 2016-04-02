@@ -54,7 +54,7 @@ public class BungeeBan extends Plugin {
         pm.registerCommand(this, new TempmuteCommand("tempmute"));
         pm.registerCommand(this, new UnbanCommand("unban"));
         pm.registerCommand(this, new UnmuteCommand("unmute"));
-
+        pm.registerCommand(this, new CheckCommand("check"));
     }
 
     public void log(String str) {

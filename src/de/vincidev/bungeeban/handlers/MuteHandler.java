@@ -2,7 +2,7 @@ package de.vincidev.bungeeban.handlers;
 
 import de.vincidev.bungeeban.BungeeBan;
 import de.vincidev.bungeeban.events.BungeeMuteEvent;
-import de.vincidev.bungeeban.util.BungeeBanManager;
+import de.vincidev.bungeeban.util.BungeeMuteManager;
 import de.vincidev.bungeeban.util.PlayerUtil;
 import net.md_5.bungee.BungeeCord;
 import net.md_5.bungee.api.connection.ProxiedPlayer;
@@ -19,7 +19,7 @@ public class MuteHandler implements Listener {
                 "{REASON}~" + e.getmuteReason(),
                 "{BY}~" + e.getmutedBy(),
                 "{NAME}~" + PlayerUtil.getPlayername(e.getmuted()),
-                "{REMAININGTIME}~" + BungeeBanManager.getRemainingBanTime(e.getmuted()));
+                "{REMAININGTIME}~" + BungeeMuteManager.getRemainingmuteTime(e.getmuted()));
         for(ProxiedPlayer p : BungeeCord.getInstance().getPlayers()) {
             if(p.hasPermission("BungeeBan.Broadcast.Mute")) {
                 for(String msg : messages) {
