@@ -20,6 +20,11 @@ mysql:
   username: 'bungeeban'
   password: 'abc123'
   database: 'bungeeban'
+
+#Players who are muted can't access these commands
+mute_deny_commands:
+- '/msg'
+- '/tell'
   
 #Edit the language configuration here. It should be self explanatory.
 #
