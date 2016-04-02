@@ -1,5 +1,6 @@
 package de.vincidev.bungeeban;
 
+import de.vincidev.bungeeban.commands.*;
 import de.vincidev.bungeeban.handlers.BanHandler;
 import de.vincidev.bungeeban.handlers.MuteHandler;
 import de.vincidev.bungeeban.handlers.UnbanHandler;
@@ -48,6 +49,14 @@ public class BungeeBan extends Plugin {
         pm.registerListener(this, new UnbanHandler());
         pm.registerListener(this, new MuteHandler());
         pm.registerListener(this, new UnmuteHandler());
+        pm.registerCommand(this, new BanCommand("ban"));
+        pm.registerCommand(this, new KickCommand("kick"));
+        pm.registerCommand(this, new MuteCommand("mute"));
+        pm.registerCommand(this, new TempbanCommand("tempban"));
+        pm.registerCommand(this, new TempmuteCommand("tempmute"));
+        pm.registerCommand(this, new UnbanCommand("unban"));
+        pm.registerCommand(this, new UnmuteCommand("unmute"));
+
     }
 
     public void log(String str) {

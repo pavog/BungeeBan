@@ -7,13 +7,8 @@ main: de.vincidev.bungeeban.BungeeBan
 commands:
   ban:
   unban:
-  banlist:
   tempban:
-  ipban:
   mute:
   unmute:
-  mutelist:
   tempmute:
-  ipmute:
-  check:
   kick:
