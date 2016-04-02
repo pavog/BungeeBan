@@ -16,7 +16,7 @@ public class BungeeBan extends Plugin {
     public void onEnable() {
         instance = this;
         configManager = new ConfigManager();
-        sql = new SQL("bungeeban.db");
+        configManager.init();
         sql.openConnection();
         sql.createTableIfNotExists("BungeeBan_Bans", "UUID VARCHAR(100), BanEnd LONG, BanReason VARCHAR(256), BannedBy VARCHAR(100)");
         sql.createTableIfNotExists("BungeeBan_IPBans", "IP VARCHAR(100), BanEnd LONG, BanReason VARCHAR(256), BannedBy VARCHAR(100)");

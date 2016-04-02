@@ -6,8 +6,8 @@
 
 #ATTENTION: If you are coming from BungeeBan 2.5, Ban and Mute migration unfortunately isn't possible.
 
-#Select your database type here. Either put 'sqlite' for SQLite, or 'mysql' for MySQL
-database: 'sqlite'
+#Select your backend type here. Either put 'sqlite' for SQLite, or 'mysql' for MySQL
+backend: 'sqlite'
 
 #If you want to use SQLite, edit the path to the sqlite database if you want to (not needed)
 sqlite:
