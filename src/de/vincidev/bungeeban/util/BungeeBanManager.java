@@ -36,13 +36,13 @@ public class BungeeBanManager {
             if(seconds > 0) {
                 end = System.currentTimeMillis() + (seconds*1000);
             }
-            BungeeCord.getInstance().getPluginManager().callEvent(new BungeeBanEvent(uuid, end, banReason, bannedBy));
             BungeeBan.getSQL().update("INSERT INTO BungeeBan_Bans(UUID, BanEnd, BanReason, BannedBy) " +
                     "VALUES('" + uuid.toString() + "', '" + end + "', '" + banReason + "', '" + bannedBy + "')");
             ProxiedPlayer target = BungeeCord.getInstance().getPlayer(uuid);
             if(target != null) {
                 target.disconnect(getBanKickMessage(uuid));
             }
+            BungeeCord.getInstance().getPluginManager().callEvent(new BungeeBanEvent(uuid, end, banReason, bannedBy));
         }
     }
 

@@ -8,6 +8,7 @@ import net.md_5.bungee.config.ConfigurationProvider;
 import net.md_5.bungee.config.YamlConfiguration;
 
 import java.io.*;
+import java.util.ArrayList;
 import java.util.List;
 
 public class ConfigManager {
@@ -57,22 +58,25 @@ public class ConfigManager {
 
     public List<String> getStringList(String key, String... replace) {
         List<String> list = configuration.getStringList(key);
+        List<String> avail = new ArrayList<>();
         for(String str : list) {
             str = ChatColor.translateAlternateColorCodes('&', str);
             for(String repl : replace) {
                 String[] r = repl.split("~");
                 str = str.replace(r[0], r[1]);
             }
+            avail.add(str);
         }
-        return list;
+        return avail;
     }
 
     public List<String> getStringList(String key) {
         List<String> list = configuration.getStringList(key);
+        List<String> avail = configuration.getStringList(key);
         for(String str : list) {
-            str = ChatColor.translateAlternateColorCodes('&', str);
+            avail.add(ChatColor.translateAlternateColorCodes('&', str));
         }
-        return list;
+        return avail;
     }
 
     public File getFile() {
