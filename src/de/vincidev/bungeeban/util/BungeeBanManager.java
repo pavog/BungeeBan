@@ -51,4 +51,49 @@ public class BungeeBanManager {
         }
     }
 
+    public static long getBanEnd(UUID uuid) {
+        long end = 0;
+        ResultSet rs = BungeeBan.getSQL().getResult("SELECT * FROM BungeeBan_Bans WHERE UUID='" + uuid.toString() + "'");
+        try {
+            if(rs.next()) {
+                end = rs.getLong("BanEnd");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return end;
+    }
+
+    public static String getRemainingBanTime(UUID uuid) {
+        if(isBanned(uuid)) {
+            long end = getBanEnd(uuid);
+            if(end > 0) {
+                long millis = end-System.currentTimeMillis();
+                int days = 0;
+                int hours = 0;
+                int minutes = 0;
+                int seconds = 0;
+                while(millis >= 1000) {
+                    seconds++;
+                    millis -= 1000;
+                }
+                while(seconds >= 60) {
+                    minutes++;
+                    seconds -= 60;
+                }
+                while(minutes >= 60) {
+                    hours++;
+                    minutes -= 60;
+                }
+                while(hours >= 24) {
+                    days++;
+                    hours -= 24;
+                }
+            } else {
+                return BungeeBan.getConfigManager().getString("lang.time_format_permanent");
+            }
+        }
+        return null;
+    }
+
 }
