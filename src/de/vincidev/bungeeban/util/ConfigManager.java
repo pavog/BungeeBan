@@ -1,6 +1,6 @@
 package de.vincidev.bungeeban.util;
 
-public class BanManager {
+public class ConfigManager {
 
 
 

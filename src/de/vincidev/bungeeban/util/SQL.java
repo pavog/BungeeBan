@@ -1,16 +1,33 @@
 package de.vincidev.bungeeban.util;
 
-import javax.xml.transform.Result;
 import java.sql.*;
 
-public class SQLite {
+public class SQL {
+
+    private boolean mysql = false;
 
     private String filename;
 
+    private String host;
+    private int port;
+    private String username;
+    private String password;
+    private String database;
+
     private Connection conn;
 
-    public SQLite(String filename) {
+    public SQL(String filename) {
+        this.mysql = false;
         this.filename = filename;
+    }
+
+    public SQL(String host, int port, String username, String password, String database) {
+        this.mysql = true;
+        this.host = host;
+        this.port = port;
+        this.username = username;
+        this.password = password;
+        this.database = database;
     }
 
     public boolean isConnected() {
@@ -20,8 +37,14 @@ public class SQLite {
     public void openConnection() {
         if(!isConnected()) {
             try {
-                Class.forName("org.sqlite.JDBC");
-                this.conn = DriverManager.getConnection("jdbc:sqlite:" + this.filename);
+                if(!this.mysql) {
+                    Class.forName("org.sqlite.JDBC");
+                    this.conn = DriverManager.getConnection("jdbc:sqlite:" + this.filename);
+                } else {
+                    this.conn = java.sql.DriverManager.getConnection(
+                            "jdbc:mysql://" + this.host + ":" + this.port + "/" + this.database + "?autoReconnect=true",
+                            this.username, this.password);
+                }
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -81,13 +104,20 @@ public class SQLite {
         update("TRUNCATE " + tablename);
     }
 
-    public void
+    public int getTableRowAmount(String tablename) {
+        int amount = 0;
+        ResultSet rs = getResult("SELECT COUNT(*) FROM " + tablename);
+        try {
+            if(rs.next()) {
+                amount = rs.getInt(0);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return amount;
+    }
 
     public Connection getConn() {
         return conn;
-    }
-
-    public String getFilename() {
-        return filename;
     }
 }
