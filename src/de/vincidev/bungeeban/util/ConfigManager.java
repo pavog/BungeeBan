@@ -34,6 +34,11 @@ public class ConfigManager {
         }
     }
 
+    public String timeFormat(int days, int hours, int minutes, int seconds) {
+        return getString("time_format").replace("{DAYS}", ""+days).replace("{HOURS}", ""+hours)
+                .replace("{MINUTES}", ""+minutes).replace("{SECONDS}", ""+seconds);
+    }
+
     public String getString(String key, String... replace) {
         String str = configuration.getString(key);
         str = ChatColor.translateAlternateColorCodes('&', str);

@@ -36,9 +36,19 @@ public class BungeeBanManager {
         BungeeBan.getSQL().update("DELETE FROM BungeeBan_Bans WHERE UUID='" + uuid.toString() + "'");
     }
 
-
     public static void unbanIP(String ip) {
         BungeeBan.getSQL().update("DELETE FROM BungeeBan_IP Bans WHERE IP='" + ip + "'");
+    }
+
+    public static void ban(UUID uuid, long seconds, String banReason, String bannedBy) {
+        if(!isBanned(uuid)) {
+            long end = -1L;
+            if(seconds > 0) {
+                end = System.currentTimeMillis() + (seconds*1000);
+            }
+            BungeeBan.getSQL().update("INSERT INTO BungeeBan_Bans(UUID, BanEnd, BanReason, BannedBy) " +
+                    "VALUES('" + uuid.toString() + "', '" + end + "', '" + banReason + "', '" + bannedBy + "')");
+        }
     }
 
 }
