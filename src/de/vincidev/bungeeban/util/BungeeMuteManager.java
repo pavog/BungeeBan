@@ -113,16 +113,11 @@ public class BungeeMuteManager {
         return null;
     }
 
-    public static String getMuteMessage(UUID uuid) {
-        List<String> lines = BungeeBan.getConfigManager().getStringList("lang.mutemessage",
+    public static List<String> lines(UUID uuid) {
+        return BungeeBan.getConfigManager().getStringList("lang.mutemessage",
                 "{REASON}~" + getMuteReason(uuid),
                 "{BY}~" + getWhomuted(uuid),
                 "{REMAININGTIME}~" + getRemainingmuteTime(uuid));
-        String str = "";
-        for(String line : lines) {
-            str = str + line + "\n";
-        }
-        return str;
     }
 
 }

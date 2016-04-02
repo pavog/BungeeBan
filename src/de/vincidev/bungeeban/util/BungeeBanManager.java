@@ -60,7 +60,7 @@ public class BungeeBanManager {
     }
 
     public static String getBanReason(UUID uuid) {
-        String str = "";
+        String str = "-";
         ResultSet rs = BungeeBan.getSQL().getResult("SELECT * FROM BungeeBan_Bans WHERE UUID='" + uuid.toString() + "'");
         try {
             if(rs.next()) {

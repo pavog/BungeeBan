@@ -54,6 +54,8 @@ lang:
     internal_error: '&cAn internal error occured: &e{DETAILS}'
     player_already_banned: '&cThe player &e{NAME} &cis already banned.'
     player_not_banned: '&cThe player &e{NAME} &cis not banned.'
+    player_already_muted: '&cThe player &e{NAME} &cis already muted.'
+    player_not_muted: '&cThe player &e{NAME} &cis not muted.'
     unknown_timeunit: '&cUnknown timunit. <sec|min|h|days>'
 
   banmessage:

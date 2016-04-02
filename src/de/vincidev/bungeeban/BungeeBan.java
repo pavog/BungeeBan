@@ -1,10 +1,7 @@
 package de.vincidev.bungeeban;
 
 import de.vincidev.bungeeban.commands.*;
-import de.vincidev.bungeeban.handlers.BanHandler;
-import de.vincidev.bungeeban.handlers.MuteHandler;
-import de.vincidev.bungeeban.handlers.UnbanHandler;
-import de.vincidev.bungeeban.handlers.UnmuteHandler;
+import de.vincidev.bungeeban.handlers.*;
 import de.vincidev.bungeeban.util.ConfigManager;
 import de.vincidev.bungeeban.util.SQL;
 import net.md_5.bungee.BungeeCord;
@@ -49,6 +46,7 @@ public class BungeeBan extends Plugin {
         pm.registerListener(this, new UnbanHandler());
         pm.registerListener(this, new MuteHandler());
         pm.registerListener(this, new UnmuteHandler());
+        pm.registerListener(this, new MiscHandler());
         pm.registerCommand(this, new BanCommand("ban"));
         pm.registerCommand(this, new KickCommand("kick"));
         pm.registerCommand(this, new MuteCommand("mute"));

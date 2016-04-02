@@ -36,7 +36,7 @@ public class ConfigManager {
     }
 
     public String timeFormat(int days, int hours, int minutes, int seconds) {
-        return getString("time_format").replace("{DAYS}", ""+days).replace("{HOURS}", ""+hours)
+        return getString("lang.time_format").replace("{DAYS}", ""+days).replace("{HOURS}", ""+hours)
                 .replace("{MINUTES}", ""+minutes).replace("{SECONDS}", ""+seconds);
     }
 
@@ -57,10 +57,9 @@ public class ConfigManager {
     }
 
     public List<String> getStringList(String key, String... replace) {
-        List<String> list = configuration.getStringList(key);
+        List<String> list = getStringList(key);
         List<String> avail = new ArrayList<>();
         for(String str : list) {
-            str = ChatColor.translateAlternateColorCodes('&', str);
             for(String repl : replace) {
                 String[] r = repl.split("~");
                 str = str.replace(r[0], r[1]);
@@ -72,7 +71,7 @@ public class ConfigManager {
 
     public List<String> getStringList(String key) {
         List<String> list = configuration.getStringList(key);
-        List<String> avail = configuration.getStringList(key);
+        List<String> avail = new ArrayList<>();
         for(String str : list) {
             avail.add(ChatColor.translateAlternateColorCodes('&', str));
         }

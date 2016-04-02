@@ -64,18 +64,13 @@ public class SQL {
 
     public void update(final String query) {
         if(isConnected()) {
-            new Thread(new Runnable() {
-                @Override
-                public void run() {
-                    try {
-                        PreparedStatement pst = conn.prepareStatement(query);
-                        pst.executeUpdate();
-                        pst.close();
-                    } catch (SQLException e) {
-                        e.printStackTrace();
-                    }
-                }
-            }).start();
+            try {
+                PreparedStatement pst = conn.prepareStatement(query);
+                pst.executeUpdate();
+                pst.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
     }
 
