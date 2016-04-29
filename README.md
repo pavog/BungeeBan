@@ -12,8 +12,3 @@ Features:
   - Easy lookup of bans and mutes
   - Open source
   - Always ready for recommendations
-  
- Useful links:
-  - source http://vincidev.de/vincidev/BungeeBan/tree/master
-  - wiki http://vincidev.de/vincidev/BungeeBan/wikis/home
-  - submit a bug http://vincidev.de/vincidev/BungeeBan/issues
