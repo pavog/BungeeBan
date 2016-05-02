@@ -1,5 +1,6 @@
 package de.vincidev.bungeeban.util;
 
+import de.vincidev.bungeeban.BungeeBan;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -14,7 +15,7 @@ public class PlayerUtil {
 
     public static UUID getUniqueId(String playername) {
         try {
-            URLConnection conn = new URL("https://eu.mc-api.net/v3/uuid/" + playername).openConnection();
+            URLConnection conn = new URL("https://" + BungeeBan.getConfigManager().getString("api") + ".mc-api.net/v3/uuid/" + playername).openConnection();
             String response = "";
             BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream()));
             while(br.ready()) {
@@ -37,7 +38,7 @@ public class PlayerUtil {
 
     public static String getPlayername(UUID uuid) {
         try {
-            URLConnection conn = new URL("https://eu.mc-api.net/v3/name/" + uuid.toString()).openConnection();
+            URLConnection conn = new URL("https://" + BungeeBan.getConfigManager().getString("api") + ".mc-api.net/v3/name/" + uuid.toString()).openConnection();
             String response = "";
             BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream()));
             while(br.ready()) {
@@ -56,7 +57,7 @@ public class PlayerUtil {
 
     public static HashMap<Long, String> getNameHistory(UUID uuid) {
         try {
-            URLConnection conn = new URL("https://eu.mc-api.net/v3/history/" + uuid.toString()).openConnection();
+            URLConnection conn = new URL("https://" + BungeeBan.getConfigManager().getString("api") + ".mc-api.net/v3/history/" + uuid.toString()).openConnection();
             String response = "";
             BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream()));
             while(br.ready()) {
