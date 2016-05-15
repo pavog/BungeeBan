@@ -21,6 +21,10 @@ public class ConfigManager {
             configuration = ConfigurationProvider.getProvider(YamlConfiguration.class).load(getFile());
             BungeeBan.PREFIX = getString("lang.prefix");
             BungeeBan.CONSOLE_PREFIX = getString("lang.console_prefix");
+            if(configuration.getString("api") == null) {
+                configuration.set("api", "eu");
+                save();
+            }
             if(configuration.getString("backend").equalsIgnoreCase("mysql")) {
                 BungeeBan.setSQL(new SQL(configuration.getString("mysql.host"),
                         configuration.getInt("mysql.port"),

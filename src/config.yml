@@ -15,7 +15,7 @@ sqlite:
 
 #Set your API location. Either 'eu' or 'us' is possible. Pick the one you live closer to for maximum speed. Currently, many users reported errors with the eu api,
 #but if it works again you can use it.
-api: 'us'
+api: 'eu'
 
 #If you want to use MySQL, enter your login data here. Make sure your user has access to the database
 mysql:

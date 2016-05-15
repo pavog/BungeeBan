@@ -13,7 +13,13 @@ import java.util.UUID;
 
 public class PlayerUtil {
 
+    private static HashMap<String, UUID> uuidCache = new HashMap<>();
+    private static HashMap<UUID, String> playernameCache = new HashMap<>();
+
     public static UUID getUniqueId(String playername) {
+        if(uuidCache.containsKey(playername)) {
+            return uuidCache.get(playername);
+        }
         try {
             URLConnection conn = new URL("https://" + BungeeBan.getConfigManager().getString("api") + ".mc-api.net/v3/uuid/" + playername).openConnection();
             String response = "";
@@ -22,7 +28,9 @@ public class PlayerUtil {
                 response = response + br.readLine();
             }
             JSONObject json = new JSONObject(response);
-            return UUID.fromString(json.getString("full_uuid"));
+            UUID uuid = UUID.fromString(json.getString("full_uuid"));
+            uuidCache.put(playername, uuid);
+            return uuid;
         } catch (Exception e) {
         }
         return null;
@@ -37,6 +45,9 @@ public class PlayerUtil {
     }
 
     public static String getPlayername(UUID uuid) {
+        if(playernameCache.containsKey(uuid)) {
+            return playernameCache.get(uuid);
+        }
         try {
             URLConnection conn = new URL("https://" + BungeeBan.getConfigManager().getString("api") + ".mc-api.net/v3/name/" + uuid.toString()).openConnection();
             String response = "";
@@ -45,7 +56,9 @@ public class PlayerUtil {
                 response = response + br.readLine();
             }
             JSONObject json = new JSONObject(response);
-            return json.getString("name");
+            String name = json.getString("name");
+            playernameCache.put(uuid, name);
+            return name;
         } catch (Exception e) {
         }
         return null;
