@@ -1,6 +1,7 @@
 package de.vincidev.bungeeban.util;
 
 import de.vincidev.bungeeban.BungeeBan;
+import net.md_5.bungee.BungeeCord;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -19,6 +20,11 @@ public class PlayerUtil {
     public static UUID getUniqueId(String playername) {
         if(uuidCache.containsKey(playername)) {
             return uuidCache.get(playername);
+        }
+        if(BungeeCord.getInstance().getPlayer(playername) != null) {
+            UUID uuid = BungeeCord.getInstance().getPlayer(playername).getUniqueId();
+            uuidCache.put(playername, uuid);
+            return uuid;
         }
         try {
             URLConnection conn = new URL("https://" + BungeeBan.getConfigManager().getString("api") + ".mc-api.net/v3/uuid/" + playername).openConnection();
@@ -47,6 +53,11 @@ public class PlayerUtil {
     public static String getPlayername(UUID uuid) {
         if(playernameCache.containsKey(uuid)) {
             return playernameCache.get(uuid);
+        }
+        if(BungeeCord.getInstance().getPlayer(uuid) != null) {
+            String name = BungeeCord.getInstance().getPlayer(uuid).getName();
+            playernameCache.put(uuid, name);
+            return name;
         }
         try {
             URLConnection conn = new URL("https://" + BungeeBan.getConfigManager().getString("api") + ".mc-api.net/v3/name/" + uuid.toString()).openConnection();
