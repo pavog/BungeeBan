@@ -26,7 +26,7 @@ public class CheckCommand extends Command {
                     if(args.length == 1) {
                         UUID uuid = PlayerUtil.getUniqueId(args[0]);
                         if(uuid != null) {
-                            String playername = PlayerUtil.getPlayername(uuid);
+                            String playername = PlayerUtil.getPlayerName(uuid);
                             sender.sendMessage(BungeeBan.PREFIX + BungeeBan.getConfigManager().getString("lang.commands.check.uuid", "{UUID}~" + uuid.toString()));
                             if(BungeeBanManager.isBanned(uuid)) {
                                 List<String> msgs = BungeeBan.getConfigManager().getStringList("lang.commands.check.banned.positive",
