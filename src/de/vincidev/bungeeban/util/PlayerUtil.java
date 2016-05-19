@@ -100,7 +100,7 @@ public class PlayerUtil {
             return cache;
         }
         JsonObject json = requestAPI(uuid.toString(), RequestType.HISTORY);
-        if(json.get("name") == null) {
+        if(json.get("error") != null) {
             return null;
         }
         JsonArray namesJson = json.getAsJsonArray("history");
