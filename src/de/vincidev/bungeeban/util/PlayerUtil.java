@@ -144,7 +144,7 @@ public class PlayerUtil {
     }
 
     /**
-     * Retrieve the Name or History of a Unique Id from the cache
+     * Retrieve the Name or History of a player from the cache
      *
      * @param uuid the Unique Id of the player
      * @param type the RequestType
@@ -159,7 +159,7 @@ public class PlayerUtil {
     }
 
     /**
-     * Retrieve the Name or History of a Unique Id from the cache
+     * Retrieve the Unique Id or History of a player from the cache
      *
      * @param name the name of the player
      * @param type the RequestType
@@ -168,7 +168,7 @@ public class PlayerUtil {
     private static Object cacheRetrieve(String name, RequestType type) {
         for(UUID uuid : cache.keySet()) {
             Map<RequestType, Object> map = cache.get(uuid);
-            if(map.containsKey(RequestType.NAME) && map.get(RequestType.NAME).equals(name)) {
+            if(map.containsKey(RequestType.NAME) && ((String) map.get(RequestType.NAME)).toLowerCase().equals(name.toLowerCase())){
                 return map.get(type);
             }
         }
