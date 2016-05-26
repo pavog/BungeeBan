@@ -18,7 +18,7 @@ public class MuteHandler implements Listener {
         List<String> messages = BungeeBan.getConfigManager().getStringList("lang.commands.mute.broadcast",
                 "{REASON}~" + e.getmuteReason(),
                 "{BY}~" + e.getmutedBy(),
-                "{NAME}~" + PlayerUtil.getPlayername(e.getmuted()),
+                "{NAME}~" + PlayerUtil.getPlayerName(e.getmuted()),
                 "{REMAININGTIME}~" + BungeeMuteManager.getRemainingmuteTime(e.getmuted()));
         for(ProxiedPlayer p : BungeeCord.getInstance().getPlayers()) {
             if(p.hasPermission("BungeeBan.Broadcast.Mute")) {

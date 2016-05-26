@@ -16,7 +16,7 @@ public class UnmuteHandler implements Listener{
     public void onUnmute(BungeeUnmuteEvent e) {
         List<String> messages = BungeeBan.getConfigManager().getStringList("lang.commands.inmite.broadcast",
                 "{BY}~" + e.getUnmutedBy(),
-                "{NAME}~" + PlayerUtil.getPlayername(e.getUnmuted()));
+                "{NAME}~" + PlayerUtil.getPlayerName(e.getUnmuted()));
         for(ProxiedPlayer p : BungeeCord.getInstance().getPlayers()) {
             if(p.hasPermission("BungeeBan.Broadcast.Unmute")) {
                 for(String msg : messages) {

@@ -16,7 +16,7 @@ public class UnbanHandler implements Listener {
     public void onUnban(BungeeUnbanEvent e) {
         List<String> messages = BungeeBan.getConfigManager().getStringList("lang.commands.unban.broadcast",
                 "{BY}~" + e.getUnbannedBy(),
-                "{NAME}~" + PlayerUtil.getPlayername(e.getUnbanned()));
+                "{NAME}~" + PlayerUtil.getPlayerName(e.getUnbanned()));
         for(ProxiedPlayer p : BungeeCord.getInstance().getPlayers()) {
             if(p.hasPermission("BungeeBan.Broadcast.Unban")) {
                 for(String msg : messages) {
