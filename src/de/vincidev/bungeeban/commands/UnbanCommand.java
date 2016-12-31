@@ -20,7 +20,7 @@ public class UnbanCommand extends Command {
         BungeeCord.getInstance().getScheduler().runAsync(BungeeBan.getInstance(), new Runnable() {
             @Override
             public void run() {
-                if (sender.hasPermission("BungeeBan.Unban")) {
+                if (sender.hasPermission("bungeeban.unban")) {
                     if (args.length == 1) {
                         String playername = args[0];
                         UUID uuid = PlayerUtil.getUniqueId(playername);

@@ -1,15 +1,39 @@
 name: BungeeBan
-version: 2.7.1
+version: 2.7.2
 author: VinciDev
 description: A fully customizable and easy to use BungeeCord plugin managing Bans and Mutes, and much more!
 website: https://github.com/vincidev/BungeeBan
 main: de.vincidev.bungeeban.BungeeBan
 commands:
   ban:
+    description: "Ban a player"
+    usage: "/ban <Player> <Reason>"
+    permission: "bungeeban.ban"
   unban:
+    description: "Unban a player"
+    usage: "/unban <Player>"
+    permission: "bungeeban.unban"
   tempban:
+    description: "Ban a player temporary"
+    usage: "/tempban <Player> <Time> <TimeUnit> <Reason>"
+    permission: "bungeeban.tempban"
   mute:
+    description: "Mute a player"
+    usage: "/mute <Player> <Reason>"
+    permission: "bungeeban.mute"
   unmute:
+    description: "Unmute a player"
+    usage: "/unmute <Player>"
+    permission: "bungeeban.unmute"
   tempmute:
+    description: "Mute a player temporary"
+    usage: "/tempmute <Player> <Time> <TimeUnit> <Reason>"
+    permission: "bungeeban.tempmute"
   kick:
+    description: "Kick a player"
+    usage: "/kick <Player> <Reason>"
+    permission: "bungeeban.kick"
   check:
+    description: "Check a player"
+    usage: "/check <Player>"
+    permission: "bungeeban.check"

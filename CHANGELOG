@@ -1,3 +1,8 @@
+## Version 2.7 ##
+New API
+Permissions are lower cased
+Better plugin.yml
+
 ## Version 2.6 ##
 SQLite and MySQL available now
 Fixed customizable messages

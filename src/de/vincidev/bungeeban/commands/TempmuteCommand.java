@@ -21,7 +21,7 @@ public class TempmuteCommand extends Command {
         BungeeCord.getInstance().getScheduler().runAsync(BungeeBan.getInstance(), new Runnable() {
             @Override
             public void run() {
-                if (sender.hasPermission("BungeeBan.TempMute")) {
+                if (sender.hasPermission("bungeeban.tempmute")) {
                     if (args.length >= 4) {
                         String playername = args[0];
                         String reason = "";

@@ -22,7 +22,7 @@ public class CheckCommand extends Command {
         BungeeCord.getInstance().getScheduler().runAsync(BungeeBan.getInstance(), new Runnable() {
             @Override
             public void run() {
-                if (sender.hasPermission("BungeeBan.Check")) {
+                if (sender.hasPermission("bungeeban.check")) {
                     if (args.length == 1) {
                         UUID uuid = PlayerUtil.getUniqueId(args[0]);
                         if (uuid != null) {

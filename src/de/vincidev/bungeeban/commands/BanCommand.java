@@ -20,7 +20,7 @@ public class BanCommand extends Command {
         BungeeCord.getInstance().getScheduler().runAsync(BungeeBan.getInstance(), new Runnable() {
             @Override
             public void run() {
-                if (sender.hasPermission("BungeeBan.Ban")) {
+                if (sender.hasPermission("bungeeban.ban")) {
                     if (args.length >= 2) {
                         String playername = args[0];
                         String reason = "";

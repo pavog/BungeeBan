@@ -21,7 +21,7 @@ public class TempbanCommand extends Command {
         BungeeCord.getInstance().getScheduler().runAsync(BungeeBan.getInstance(), new Runnable() {
             @Override
             public void run() {// /tempban user time timeunit reason
-                if (sender.hasPermission("BungeeBan.TempBan")) {
+                if (sender.hasPermission("bungeeban.tempban")) {
                     if (args.length >= 4) {
                         String playername = args[0];
                         String reason = "";
