@@ -2,6 +2,7 @@ package de.vincidev.bungeeban.util;
 
 import de.vincidev.bungeeban.BungeeBan;
 import net.md_5.bungee.BungeeCord;
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
@@ -25,22 +26,31 @@ public class PlayerUtil {
             return uuid;
         }
         try {
-            URLConnection conn = new URL("https://mcapi.ca/profile/" + playername).openConnection();
+            final URLConnection conn = new URL("https://api.mojang.com/users/profiles/minecraft/" + playername).openConnection();
             final StringBuilder response = new StringBuilder();
-            BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+            final BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream()));
             String line = "";
             while (br.ready() && ((line = br.readLine()) != null)) {
                 response.append(line);
             }
+            br.close();
 
             final JSONObject profile = new JSONObject(response.toString());
-            if (profile.getString("uuid") != null) {
-                final UUID uuid = UUID.fromString(profile.getString("uuid"));
+            if (profile.get("id") != null && profile.get("name") != null) {
+                String hexStringWithoutHyphens = profile.get("id").toString();
+                // Use regex to format the hex string by inserting hyphens in the canonical format: 8-4-4-4-12
+                String hexStringWithInsertedHyphens = hexStringWithoutHyphens.replaceFirst("([0-9a-fA-F]{8})([0-9a-fA-F]{4})([0-9a-fA-F]{4})([0-9a-fA-F]{4})([0-9a-fA-F]+)", "$1-$2-$3-$4-$5");
+                final UUID uuid = UUID.fromString(hexStringWithInsertedHyphens);
                 uuidCache.put(playername, uuid);
+                uuidCache.put(profile.get("name").toString(), uuid);
+                playernameCache.put(uuid, profile.get("name").toString());
                 return uuid;
+            } else {
+                BungeeBan.getInstance().getLogger().warning("Error from api: " + response.toString());
             }
         } catch (Exception localException) {
-            BungeeBan.getInstance().getLogger().warning("Could not read from api!");
+            BungeeBan.getInstance().getLogger().warning("Could not read player uuid from api!");
+            localException.printStackTrace();
         }
         return null;
     }
@@ -54,22 +64,33 @@ public class PlayerUtil {
             playernameCache.put(uuid, name);
             return name;
         }
+        String responseText = "";
         try {
-            URLConnection conn = new URL("https://mcapi.ca/profile/" + uuid.toString()).openConnection();
+            final URLConnection conn = new URL("https://api.mojang.com/user/profiles/" + uuid.toString() + "/names").openConnection();
             final StringBuilder response = new StringBuilder();
-            BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+            final BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream()));
             String line = "";
             while (br.ready() && ((line = br.readLine()) != null)) {
                 response.append(line);
             }
+            br.close();
 
-            final JSONObject profile = new JSONObject(response.toString());
-            if (profile.getString("name") != null) {
-                playernameCache.put(uuid, profile.getString("name"));
-                return profile.getString("name");
+            responseText = response.toString();
+
+            final JSONArray profile = new JSONArray(response.toString());
+            if (profile.get(profile.length() - 1) != null || profile.getJSONObject(profile.length() - 1) != null) {
+                final JSONObject lastObj = profile.getJSONObject(profile.length() - 1);
+                playernameCache.put(uuid, lastObj.getString("name"));
+                if (!uuidCache.containsKey(lastObj.getString("name")))
+                    uuidCache.put(lastObj.getString("name"), uuid);
+                return lastObj.getString("name");
+            } else {
+                BungeeBan.getInstance().getLogger().warning("Error from api: " + response.toString());
             }
         } catch (Exception localException) {
-            BungeeBan.getInstance().getLogger().warning("Could not read from api!");
+            BungeeBan.getInstance().getLogger().warning("Could not read player name from api!");
+            BungeeBan.getInstance().getLogger().warning(responseText);
+            localException.printStackTrace();
         }
         return null;
     }
